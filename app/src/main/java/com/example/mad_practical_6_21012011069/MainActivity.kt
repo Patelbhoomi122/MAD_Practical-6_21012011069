@@ -4,24 +4,36 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val start= findViewById<Button>(R.id.play_button)
+
+        val start: FloatingActionButton = findViewById(R.id.play_button)
         start.setOnClickListener {
-            Intent(applicationContext,MyService::class.java).putExtra(MyService.playerconstant,"fhg").apply {
+            play()
+        }
+        val stop: FloatingActionButton = findViewById(R.id.stop_button)
+        start.setOnClickListener {
+            pause()
+        }
+    }
+
+    fun play() {
+        Intent(applicationContext, MyService::class.java).putExtra(MyService.playerconstant, "fhg")
+            .apply {
                 startService(this)
             }
-        }
-        val stop=findViewById<Button>(R.id.stop_button)
-        stop.setOnClickListener {
-            Intent(applicationContext,MyService::class.java).putExtra(MyService.playerconstant,"fhg").apply {
-                stopService(this)
-            }
-        }
+    }
 
+    fun pause() {
+        Intent(applicationContext, MyService::class.java).putExtra(MyService.playerconstant, "agx")
+            .apply {
+                startService(this)
+            }
     }
-    }
+
+}
 
