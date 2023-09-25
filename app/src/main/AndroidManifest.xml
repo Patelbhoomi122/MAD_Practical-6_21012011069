@@ -18,7 +18,6 @@
             android:exported="true"></service>
 
         <activity
-
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
